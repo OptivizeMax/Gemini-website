@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Optivize Max</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], },
+                    colors: {
+                        brand: { navy: '#0A1A3A', blue: '#0066FF', light: '#F3F7FA', }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'blob': 'blob 7s infinite',
+                        'bounce-slight': 'bounceSlight 2s infinite ease-in-out',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        bounceSlight: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+    </style>
+</head>
+<body class="bg-brand-navy text-gray-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 backdrop-blur-md bg-white/90 border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer transition-transform hover:scale-105">
+                    <img src="logo.png" alt="Optivize Max Logo" class="h-16 md:h-20 w-auto object-contain" onerror="this.src='https://placehold.co/400x100/0A1A3A/FFFFFF?text=Optivize+Max&font=Montserrat'">
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#services" class="text-gray-600 hover:text-brand-blue font-medium">Services</a>
+                    <a href="index.html#about" class="text-gray-600 hover:text-brand-blue font-medium">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Success Message Section -->
+    <main class="flex-grow flex items-center justify-center pt-32 pb-20 relative overflow-hidden">
+        <!-- Animated Background Blobs -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-blue rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-green-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 text-center">
+            
+            <div class="bg-white/95 backdrop-blur-xl rounded-3xl p-10 md:p-16 shadow-[0_0_40px_rgba(0,102,255,0.15)] border border-white/20 animate-fade-in-up">
+                
+                <!-- Success Checkmark Icon -->
+                <div class="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce-slight shadow-inner border border-green-100">
+                    <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+
+                <h1 class="text-3xl md:text-4xl font-extrabold text-brand-navy mb-4">Request Successfully Received</h1>
+                
+                <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                    Thank you for reaching out. Our engineering team has received your details and is currently reviewing your operational requirements. <br><br>
+                    <strong>We will contact you within 24 hours to schedule your technical consultation.</strong>
+                </p>
+                
+                <a href="index.html" class="inline-flex items-center justify-center bg-brand-navy hover:bg-brand-blue text-white px-8 py-4 rounded-xl font-bold text-lg transition-all transform hover:-translate-y-1 shadow-lg w-full sm:w-auto">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    Return to Homepage
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#010613] py-8 border-t border-white/10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img src="logo.png" alt="Optivize Max" class="h-5 w-auto opacity-30 grayscale mr-4" onerror="this.style.display='none'">
+                <p>&copy; 2026 Optivize Labs LLC. All rights reserved.</p>
+            </div>
+            <div><p>Based in Queens, NY</p></div>
+        </div>
+    </footer>
+
+</body>
+</html>
