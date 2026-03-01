@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | Optivize Max</title>
-    <meta name="description" content="Get in touch with Optivize Max for Technical Operations & Workflow Engineering.">
+    <title>Optivize Max | Technical Operations & Workflow Engineering</title>
+    <meta name="description" content="Engineering scalable operations for growing businesses.">
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Tailwind Configuration & Custom Colors -->
+    <!-- Tailwind Configuration & Custom Animations -->
     <script>
         tailwind.config = {
             theme: {
@@ -31,11 +31,34 @@
                     },
                     animation: {
                         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'blob': 'blob 7s infinite',
+                        'gradient-x': 'gradient-x 4s ease infinite',
+                        'float': 'float 3s ease-in-out infinite',
                     },
                     keyframes: {
                         fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        'gradient-x': {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
                         }
                     }
                 }
@@ -44,37 +67,220 @@
     </script>
 
     <style>
+        /* Scroll Reveal Utility Classes */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Utility to stagger animation delays */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        
+        /* Custom delay for the blob animation */
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+        
+        /* Background sizing for gradient animation */
+        .bg-300\% { background-size: 300% 300%; }
     </style>
 </head>
-<body class="bg-brand-navy text-gray-800 font-sans antialiased selection:bg-brand-blue selection:text-white min-h-screen flex flex-col">
+<body class="bg-white text-gray-800 font-sans antialiased selection:bg-brand-blue selection:text-white">
 
     <!-- Navigation (Sticky with Glassmorphism) -->
-    <nav class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-md bg-white/90 border-b border-gray-100 shadow-sm">
+    <nav class="fixed w-full z-50 top-0 transition-all duration-500 backdrop-blur-md bg-white/80 border-b border-gray-100 shadow-sm hover:bg-white/95">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
-                <!-- Logo linking back to Home -->
-                <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer transition-transform hover:scale-105">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer transition-transform duration-300 hover:scale-105" onclick="window.scrollTo(0,0)">
                     <img src="logo.png" alt="Optivize Max Logo" class="h-16 md:h-20 w-auto object-contain" onerror="this.src='https://placehold.co/400x100/0A1A3A/FFFFFF?text=Optivize+Max&font=Montserrat'">
-                </a>
+                </div>
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="index.html#services" class="text-gray-600 hover:text-brand-blue font-medium transition-colors">Services</a>
-                    <a href="index.html#about" class="text-gray-600 hover:text-brand-blue font-medium transition-colors">About</a>
-                    <a href="contact.html" class="bg-brand-blue text-white px-6 py-2.5 rounded-lg font-medium shadow-md">Contact Us</a>
+                    <a href="#services" class="text-gray-600 hover:text-brand-blue font-medium transition-colors duration-300 relative group">
+                        Services
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-blue transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#about" class="text-gray-600 hover:text-brand-blue font-medium transition-colors duration-300 relative group">
+                        About
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-blue transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="contact.html" class="bg-brand-blue text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-700 shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1">Get Started</a>
                 </div>
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <a href="index.html" class="text-brand-blue font-semibold mr-4 hover:underline">← Back to Home</a>
+                    <a href="contact.html" class="bg-brand-blue text-white px-5 py-2 rounded-lg text-sm font-semibold shadow-md hover:shadow-lg transition-all">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-40 pb-20 lg:pt-56 lg:pb-32 overflow-hidden">
+        <!-- Animated Background Blobs -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-blue-100 opacity-60 mix-blend-multiply blur-3xl animate-blob -z-10"></div>
+        <div class="absolute top-20 left-10 w-72 h-72 rounded-full bg-brand-light opacity-60 mix-blend-multiply blur-3xl animate-blob animation-delay-2000 -z-10"></div>
+        <div class="absolute -bottom-8 left-1/2 w-80 h-80 rounded-full bg-indigo-50 opacity-60 mix-blend-multiply blur-3xl animate-blob animation-delay-4000 -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-brand-navy tracking-tight leading-tight mb-6 animate-fade-in-up">
+                Technical Operations & <br class="hidden md:block"/> 
+                <!-- Animated Gradient Text -->
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-navy via-brand-blue to-brand-navy animate-gradient-x bg-300%">Workflow Engineering</span>
+            </h1>
+            <p class="mt-6 max-w-2xl mx-auto text-xl text-gray-500 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: both;">
+                We translate complex business bottlenecks into streamlined, automated technical workflows. Build the foundation your company needs to scale efficiently.
+            </p>
+            <div class="mt-12 flex justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.4s; animation-fill-mode: both;">
+                <a href="contact.html" class="group relative inline-flex items-center justify-center bg-brand-navy text-white px-8 py-4 rounded-xl font-semibold text-lg overflow-hidden transition-all hover:scale-105 shadow-xl hover:shadow-brand-navy/30">
+                    <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-brand-blue to-brand-navy opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
+                    <span class="relative flex items-center">
+                        Request an Assessment
+                        <svg class="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-brand-light/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <h2 class="text-brand-blue font-bold tracking-widest uppercase text-sm mb-3 animate-pulse">Our Expertise</h2>
+                <h3 class="text-3xl md:text-5xl font-extrabold text-brand-navy">Engineering scalable operations</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+                <!-- Service 1 (Interactive Card) -->
+                <div class="group bg-white p-10 rounded-3xl shadow-sm hover:shadow-2xl hover:shadow-brand-blue/10 transition-all duration-500 border border-gray-100 hover:border-brand-blue/30 reveal hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-brand-light text-brand-blue rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors duration-500 shadow-inner group-hover:animate-float">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-brand-navy mb-4 group-hover:text-brand-blue transition-colors duration-300">Infrastructure Setup</h4>
+                    <p class="text-gray-600 leading-relaxed">Designing and implementing internal operational workflows using agile methodologies. Architecting resilient project management schemas and secure document repositories.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group bg-white p-10 rounded-3xl shadow-sm hover:shadow-2xl hover:shadow-brand-blue/10 transition-all duration-500 border border-gray-100 hover:border-brand-blue/30 reveal delay-100 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-brand-light text-brand-blue rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors duration-500 shadow-inner group-hover:animate-float">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-brand-navy mb-4 group-hover:text-brand-blue transition-colors duration-300">Process Engineering & SOPs</h4>
+                    <p class="text-gray-600 leading-relaxed">Developing rigorous Standard Operating Procedures (SOPs) for deployment lifecycles and client onboarding to guarantee compliance, security, and team consistency.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group bg-white p-10 rounded-3xl shadow-sm hover:shadow-2xl hover:shadow-brand-blue/10 transition-all duration-500 border border-gray-100 hover:border-brand-blue/30 reveal hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-brand-light text-brand-blue rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors duration-500 shadow-inner group-hover:animate-float">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-brand-navy mb-4 group-hover:text-brand-blue transition-colors duration-300">System & Vendor Assessment</h4>
+                    <p class="text-gray-600 leading-relaxed">Evaluating the optimal technology stack (hosting, CRM, automation tools) through strict engineering cost-benefit analysis for highly scalable, cost-effective solutions.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="group bg-white p-10 rounded-3xl shadow-sm hover:shadow-2xl hover:shadow-brand-blue/10 transition-all duration-500 border border-gray-100 hover:border-brand-blue/30 reveal delay-100 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-brand-light text-brand-blue rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue group-hover:text-white transition-colors duration-500 shadow-inner group-hover:animate-float">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold text-brand-navy mb-4 group-hover:text-brand-blue transition-colors duration-300">Technical Scopes & Proposals</h4>
+                    <p class="text-gray-600 leading-relaxed">Translating high-level business needs into detailed technical specifications and Scope of Work (SOW) documents to eliminate efficiency bottlenecks and developer friction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                <div class="lg:w-1/2 reveal">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl group">
+                        <!-- Image with smooth zoom on hover -->
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Technology Infrastructure" class="w-full h-[450px] object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-brand-navy mix-blend-multiply opacity-30 transition-opacity duration-700 group-hover:opacity-10"></div>
+                        
+                        <!-- Floating Glass Decor -->
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl rotate-12 animate-float hidden md:block"></div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 reveal delay-100">
+                    <h2 class="text-brand-blue font-bold tracking-widest uppercase text-sm mb-3">About The Firm</h2>
+                    <h3 class="text-4xl font-extrabold text-brand-navy mb-8 leading-tight">Led by Zubair Syed, <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-navy to-brand-blue">Founder & Operations Engineer.</span></h3>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                        We don't just recommend software; we architect the operational backbone of your company. Many businesses hit a wall because their internal tools and processes cannot handle their rapid growth.
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-10">
+                        From infrastructure audits to drafting comprehensive standard operating procedures, we act as your fractional engineering management team to build systems that scale gracefully.
+                    </p>
+                    <a href="contact.html" class="inline-flex items-center font-bold text-brand-blue hover:text-brand-navy transition-colors group text-lg">
+                        Learn how we work
+                        <span class="ml-2 p-2 bg-blue-50 rounded-full group-hover:bg-brand-light transition-colors">
+                            <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="py-20 bg-brand-navy relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center reveal">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Ready to scale your systems?</h2>
+            <p class="text-blue-100 text-xl mb-10">Request your complimentary Technical Consultation today.</p>
+            <a href="contact.html" class="inline-block bg-white text-brand-navy px-10 py-4 rounded-xl font-bold text-lg hover:bg-brand-blue hover:text-white transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(0,102,255,0.3)]">
+                Get Started Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#010613] py-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+            <div class="flex items-center mb-6 md:mb-0">
+                <img src="logo.png" alt="Optivize Max" class="h-6 w-auto opacity-40 hover:opacity-100 transition-opacity mr-4" onerror="this.style.display='none'">
+                <p>&copy; 2026 Optivize Labs LLC (dba Optivize Max). All rights reserved.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#services" class="hover:text-white transition-colors">Services</a>
+                <a href="#about" class="hover:text-white transition-colors">About</a>
+                <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts for Scroll Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll(".reveal");
+            
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        // Optional: stop observing once revealed
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, revealOptions);
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
+</body>
+</html>
